@@ -1,0 +1,5 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","40577","@Web iframe handling validation test","","2026-01-19","broken","2026-01-19","","MoreValidations.spec.js","",""
+"","40193","@Web Visible/Hidden validation test","","2026-01-19","broken","2026-01-19","","MoreValidations.spec.js","",""
+"","24121","@Web hover validation test","","2026-01-19","passed","2026-01-19","","MoreValidations.spec.js","",""
+"","44413","@Web Alert popup/dialog validation test","","2026-01-19","passed","2026-01-19","","MoreValidations.spec.js","",""
