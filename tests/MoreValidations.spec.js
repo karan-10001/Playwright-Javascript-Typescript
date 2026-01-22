@@ -1,89 +1,75 @@
-const {test, expect}= require('@playwright/test');
+import { test, expect } from "@playwright/test";
 
+//here ading custome configuration for test  to run parallel
+test.describe.configure({ mode: "parallel" });
 
-test('Visible/Hidden validation test', async ({browser})=>{
+test("@Web Visible/Hidden validation test", async ({ browser }) => {
+  const browserContext = await browser.newContext();
+  const page = await browserContext.newPage();
 
-    const browserContext = await browser.newContext();
-    const page = await browserContext.newPage();
+  await page.goto("https://rahulshettyacademy.com/AutomationPractice/");
+  // await page.goto("https://www.google.com/");
+  // await page.goBack();
+  // await page.goForward();
 
-    await page.goto("https://rahulshettyacademy.com/AutomationPractice/");
-    await page.goto('https://www.google.com/');
-    await page.goBack();
-    await page.goForward();
-
-    await expect(page.locator("input[name='show-hide']")).toBeVisible();
-    await page.locator('#hide-textbox').click();
-    await expect(page.locator("input[name='show-hide']")).toBeHidden();
-
-
+  await expect(page.locator("input[name='show-hide']")).toBeVisible();
+  await page.locator("#hide-textbox").click();
+  await expect(page.locator("input[name='show-hide']")).toBeHidden();
 });
 
-test('Alert popup/dialog validation test', async ({browser})=>{
+test("Alert popup/dialog validation test", async ({ browser }) => {
+  const browserContext = await browser.newContext();
+  const page = await browserContext.newPage();
 
-    const browserContext = await browser.newContext();
-    const page = await browserContext.newPage();
+  await page.goto("https://rahulshettyacademy.com/AutomationPractice/");
 
-    await page.goto("https://rahulshettyacademy.com/AutomationPractice/");
+  //this is one time listner
+  page.once("dialog", (dialog) => dialog.dismiss()); // this is listener & it is waiting for pop-up to occur.
+  await page.locator("#confirmbtn").click();
 
-   
-   //this is one time listner 
-    page.once('dialog',dialog=>  dialog.dismiss()); // this is listener & it is waiting for pop-up to occur. 
-    await page.locator('#confirmbtn').click();
+  page.once("dialog", (dialog) => dialog.accept()); // listener is waiting for any alert or dialog  to occur.
+  await page.locator("#alertbtn").click();
 
-    page.once('dialog',dialog=> dialog.accept()); // listener is waiting for any alert or dialog  to occur.
-    await page.locator('#alertbtn').click();
+  // stead of page.once we can use page.on('dialog', dialog=> dialog.dismiss()); but still on it will search for next event
 
-    // stead of page.once we can use page.on('dialog', dialog=> dialog.dismiss()); but still on it will search for next event
+  // if you want you can also put some condition here
+  //     page.on('dialog', dialog => {
+  //   if (dialog.type() === 'confirm') {
+  //     dialog.dismiss();
+  //   } else {
+  //     dialog.accept();
+  //   }
+  // });
 
-    // if you want you can also put some condition here
-//     page.on('dialog', dialog => {
-//   if (dialog.type() === 'confirm') {
-//     dialog.dismiss();
-//   } else {
-//     dialog.accept();
-//   }
-// });
-
-// await page.locator('#confirmbtn').click();
-// await page.locator('#alertbtn').click();
-
+  // await page.locator('#confirmbtn').click();
+  // await page.locator('#alertbtn').click();
 });
 
-test('hover validation test', async ({browser})=>{
+test("@Web hover validation test", async ({ browser }) => {
+  const browserContext = await browser.newContext();
+  const page = await browserContext.newPage();
 
-    const browserContext = await browser.newContext();
-    const page = await browserContext.newPage();
+  await page.goto("https://rahulshettyacademy.com/AutomationPractice/");
 
-    await page.goto("https://rahulshettyacademy.com/AutomationPractice/");
-    
-    //
-    await page.locator('#mousehover').hover();
-
-
+  //
+  await page.locator("#mousehover").hover();
 });
 
-test.only('iframe handling validation test', async ({browser})=>{
+test("@Web iframe handling validation test", async ({ browser }) => {
+  const browserContext = await browser.newContext();
+  const page = await browserContext.newPage();
 
-    const browserContext = await browser.newContext();
-    const page = await browserContext.newPage();
+  await page.goto("https://rahulshettyacademy.com/AutomationPractice/");
 
-    await page.goto("https://rahulshettyacademy.com/AutomationPractice/");
-    
-   //if you handling the iframe or frameset  then use farmelocator
+  //if you handling the iframe or frameset  then use farmelocator
 
-   const framePage = page.frameLocator('#courses-iframe');
+  const framePage = page.frameLocator("#courses-iframe");
 
-   const accessAllLocator= framePage.locator("div a[href*='all-access']").first();
+  const accessAllLocator = framePage
+    .locator("div a[href*='all-access']")
+    .first();
 
-   await accessAllLocator.click();
+  await accessAllLocator.click();
 
-   await expect(framePage.locator('text=Premium Access Plans')).toBeVisible();
-
-
- 
-
-
-   
-
+  await expect(framePage.locator("text=Premium Access Plans")).toBeVisible();
 });
-

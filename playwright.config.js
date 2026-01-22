@@ -14,7 +14,7 @@ import { defineConfig, devices } from '@playwright/test';
  */
 const  config = defineConfig({
   testDir: './tests',
-
+  retries: 1,  // this retries is used to run failed test cases multiplel times
   timeout: 40000, // this for  global timeout
 
   expect :{
@@ -22,7 +22,13 @@ const  config = defineConfig({
     timeout: 40000,
   },
  
-  reporter: 'html',
+  //reporter: 'html',
+
+  //allure reporting
+    reporter: [
+    ['list'],
+    ['allure-playwright']
+  ],
 
   /* Run tests in files in parallel */
   // fullyParallel: true,

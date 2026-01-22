@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 //const {test, expect}= require('@playwright/test');
 
-test("getByLabel() locator practice ", async ({ page }) => {
+test("@Regression getByLabel() locator practice ", async ({ page }) => {
   await page.goto("https://rahulshettyacademy.com/angularpractice/");
 
   //use getByLabel() on clicking or selecting something not for typing in ideal scenario
@@ -14,14 +14,14 @@ test("getByLabel() locator practice ", async ({ page }) => {
   await passwordLocator.fill("Karan"); //here this is not working it does not work for typing or inputbox
 });
 
-test("getByPlaceholder() locator practice ", async ({ page }) => {
+test("@Regression getByPlaceholder() locator practice ", async ({ page }) => {
   await page.goto("https://rahulshettyacademy.com/angularpractice/");
 
   //when element have inputbox and there is placholder then  use this locator
   await page.getByPlaceholder("Password").fill("karanpratapsingh");
 });
 
-test("getByRole() locator practice ", async ({ page }) => {
+test("@Regression getByRole() locator practice ", async ({ page }) => {
   await page.goto("https://rahulshettyacademy.com/angularpractice/");
 
   //this is most used locator
@@ -33,7 +33,7 @@ test("getByRole() locator practice ", async ({ page }) => {
   await page.getByRole("link", { name: "Shop" }).click();
 });
 
-test("getByText() locator practice ", async ({ page }) => {
+test("@Regression getByText() locator practice ", async ({ page }) => {
   await page.goto("https://rahulshettyacademy.com/angularpractice/");
 
   //this is used to get element based on it's text
@@ -44,7 +44,7 @@ test("getByText() locator practice ", async ({ page }) => {
                       //this will not work here because it is associated with submit button
 });
 
-test(" filter locator practice ", async ({ page }) => {
+test("@Regression filter locator practice ", async ({ page }) => {
   await page.goto("https://rahulshettyacademy.com/angularpractice/");
 
   //this is most used locator

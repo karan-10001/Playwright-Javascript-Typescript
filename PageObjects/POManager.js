@@ -1,5 +1,8 @@
-const {LoginPage } = require("./LoginPage.js");
-const {DashboardPage } = require("./DashboardPage.js");
+// const {LoginPage } = require("./LoginPage.js");
+// const {DashboardPage } = require("./DashboardPage.js");
+
+import {LoginPage} from "./LoginPage.js";
+import { DashboardPage } from "./DashboardPage.js";
 
 export class POManager
 {
